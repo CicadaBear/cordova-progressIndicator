@@ -13,7 +13,7 @@
     <author>Paolo Bernasconi</author>
     <keywords>progress,indicator,activity,loading,load,progressindicator</keywords>
     <license>Apache 2.0 License</license>
-    <repo>https://github.com/pbernasconi/cordova-progressIndicator.git</repo>
+    <repo>https://github.com/cicadabear/cordova-progressIndicator.git</repo>
 
     <js-module src="www/progressIndicator.js" name="ProgressIndicator">
         <clobbers target="window.plugins.ProgressIndicator"/>
