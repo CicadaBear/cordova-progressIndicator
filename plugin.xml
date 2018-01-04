@@ -16,7 +16,7 @@
     <repo>https://github.com/cicadabear/cordova-progressIndicator.git</repo>
 
     <js-module src="www/progressIndicator.js" name="ProgressIndicator">
-        <clobbers target="window.plugins.ProgressIndicator"/>
+        <clobbers target="cordova.plugins.ProgressIndicator"/>
     </js-module>
 
     <!-- iOS -->
