@@ -56,6 +56,7 @@ public class ProgressIndicator extends CordovaPlugin {
      */
     public void show() {
         progressIndicator = new ProgressDialog(cordova.getActivity());
+        progressIndicator.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 		progressIndicator.show();
     }
 
