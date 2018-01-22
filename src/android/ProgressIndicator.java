@@ -6,11 +6,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import android.app.ProgressDialog;
 import android.graphics.drawable.ColorDrawable;
+import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 public class ProgressIndicator extends CordovaPlugin {
 
     private ProgressDialog progressIndicator = null;
-	private static final String LOG_TAG = "ProgressIndicator";
+    private static final String LOG_TAG = "ProgressIndicator";
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -35,7 +38,7 @@ public class ProgressIndicator extends CordovaPlugin {
             return true;
         } else if (action.equals("showText")) {
             String title = args.getString(1);
-			String text = args.getString(2);
+            String text = args.getString(2);
             show(title, text, false);
             callbackContext.success();
             return true;
@@ -45,7 +48,7 @@ public class ProgressIndicator extends CordovaPlugin {
             return true;
         } else {
             callbackContext.error("Not supported call. On Android we only support show, showSimple, showSimpleWithLabel and showSimpleWithLabelDetail");
-		}
+        }
 
         return false;
     }
@@ -58,7 +61,12 @@ public class ProgressIndicator extends CordovaPlugin {
     public void show() {
         progressIndicator = new ProgressDialog(cordova.getActivity());
         progressIndicator.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-		progressIndicator.show();
+        progressIndicator.show();
+        ProgressBar progressBar = new ProgressBar(webView.getContext());
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+        progressBar.setLayoutParams(layoutParams);
+        progressIndicator.setContentView(progressBar);
     }
 
     /**
@@ -68,8 +76,8 @@ public class ProgressIndicator extends CordovaPlugin {
      */
     public void show(String text) {
         progressIndicator = new ProgressDialog(cordova.getActivity());
-		progressIndicator.setTitle(text);
-		progressIndicator.show();
+        progressIndicator.setTitle(text);
+        progressIndicator.show();
     }
 
     /**
@@ -79,10 +87,10 @@ public class ProgressIndicator extends CordovaPlugin {
      */
     public void show(String title, String detail, Boolean withTitle) {
         progressIndicator = new ProgressDialog(cordova.getActivity());
-		if(withTitle)
-			progressIndicator.setTitle(title);
-		progressIndicator.setMessage(detail);
-		progressIndicator.show();
+        if(withTitle)
+            progressIndicator.setTitle(title);
+        progressIndicator.setMessage(detail);
+        progressIndicator.show();
     }
 
     /**
